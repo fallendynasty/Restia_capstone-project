@@ -1,0 +1,49 @@
+.bg
+{
+  width: 100%;
+  height: 800;
+  z-index: 0;
+}
+
+body{
+    background-color: #B7CADB;
+}
+
+.navbar{
+    background-color: #F3E9DD;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+
+.navbar a{
+    color: #000000;
+    text-align: center;
+    padding: 50px 30px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.navbar a:hover{
+    background-color: #FDF6EC;
+}
+
+.right_sign
+{
+    float:right;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: black;
+}
+
+.centered_text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+        
+}
