@@ -1,0 +1,64 @@
+.bg
+{
+  width: 100%;
+  height: 90%;
+  z-index: 0;
+}
+
+body{
+    background-color: #B7CADB;
+}
+
+.navbar{
+    background-color: #F3E9DD;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+
+.navbar a{
+    color: #000000;
+    text-align: center;
+    padding: 50px 30px;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: Helvetica, sans-serif;
+}
+
+.navbar a:hover{
+    background-color: #FDF6EC;
+}
+
+.right_sign
+{
+    float:right;
+}
+
+.topbar{
+    background-color: #F3E9DD;
+    padding: 2.5px 10px;
+    overflow: hidden;
+    font-family: Helvetica, sans-serif;
+    font-size:17px;
+}
+
+.form_styles{
+    font-family: Helvetica,sans-serif;
+    font-size: 17px;
+    padding-left: 10px;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: black;
+}
+
+.nyjc_text {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    font-family: Georgia, serif;
+}
