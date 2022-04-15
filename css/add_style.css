@@ -1,37 +1,6 @@
-.bg
-{
-  width: 100%;
-  height: 90%;
-  z-index: 0;
-}
-
 body{
     background-color: #B7CADB;
-}
-
-.navbar{
-    background-color: #F3E9DD;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    overflow: hidden;
-}
-
-.navbar a{
-    color: #000000;
-    text-align: center;
-    padding: 50px 30px;
-    text-decoration: none;
-    font-size: 20px;
-    font-family: Helvetica, sans-serif;
-}
-
-.navbar a:hover{
-    background-color: #FDF6EC;
-}
-
-.right_sign
-{
-    float:right;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .topbar{
