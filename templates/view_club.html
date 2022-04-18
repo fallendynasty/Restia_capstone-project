@@ -1,5 +1,19 @@
-to be filled club
-<a href="{{url_for('view', form='student')}}">View student</a>
-<a href="{{url_for('view', form='club')}}">View club</a>
-<a href="{{url_for('view', form='activity')}}">View activity</a>
-<a href="{{url_for('view', form='class')}}">View class</a>
+<html>
+    <head>
+        <title>View Club</title>
+        <link href="add_style.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <div class="topbar">
+            <p style="padding-left:3px;"><a href="">Home</a> >View Club</p>
+        </div><br/>
+
+         <form class="form_styles">
+            <label for="club">Enter Club Name:</label>
+            <input type="text" id="club" name="club" value=""><br/><br/>
+             <input type="submit" value="Search">
+         </form>
+    </body>
+    
+</html>
