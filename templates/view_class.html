@@ -1,5 +1,37 @@
-to be filled class
-<a href="{{url_for('view', form='student')}}">View student</a>
-<a href="{{url_for('view', form='club')}}">View club</a>
-<a href="{{url_for('view', form='activity')}}">View activity</a>
-<a href="{{url_for('view', form='class')}}">View class</a>
+<html>
+    <head>
+        <title>View Class</title>
+        <link href="{{url_for('static', filename="add_style.css")}}" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <div class="topbar">
+            <p style="padding-left:3px;"><a href="/">Home</a> >View Class</p>
+        </div><br/>
+
+         <form class="form_styles">
+            <label for="club">Enter Class Name:</label>
+            <input type="text" id="class" name="class" value=""><br/><br/>
+             <input style="background-color: #DAB88B; font-size: 17px;" type="submit" value="Search">
+         </form>
+
+        <table style="padding-left:10px; border-collapse: collapse; width: 100%;">
+            <tr>
+                <th style="padding:8px; border: 2px solid black;">Student Name</th>
+                <th style="padding:8px; border: 2px solid black;">Student Club</th>
+                <th style="padding:8px; border: 2px solid black;">Student Activity(s)</th>
+            </tr>  
+
+            {% for name in ['Jack','Mindy','Claire']%}
+            <tr>
+                <td style="padding:8px; border:2px solid black;">0</td>
+                <td style="padding:8px; border:2px solid black;">{{name}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+
+
+        
+    </body>
+    
+</html>
