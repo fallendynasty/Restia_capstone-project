@@ -1,5 +1,13 @@
 {
   "files": {
+    "sql.py": [
+      {
+        "id": "2f7853ff-2ba4-4155-a20a-e0db8d2d43d1",
+        "line": 26,
+        "version": 1,
+        "index": 533
+      }
+    ],
     "templates/home.html": [
       {
         "id": "ed8bc712-6296-4bcd-a8f0-a62f3770f7dd",
