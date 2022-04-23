@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import database_functions
+import db as DB
 app = Flask(__name__)
 
 @app.route('/') #Splash page (Welcome page)

@@ -100,23 +100,64 @@ CREATE TABLE IF NOT EXISTS ClubActivity (
 
 ### SQL INSERT STATEMENTS ###
 # Insert for Student, Class, Club, Subject, Activity
-
 INSERT_STUDENT = """
-INSERT INTO Student VALUES (?, ?, ?, ?, ?, ?)
-;"""
-
-INSERT_CLASS = """
-INSERT INTO Class VALUES (?, ?, ?)
+INSERT INTO Student (
+    Name,
+    Age,
+    YearEnrolled,
+    StudentClass
+) VALUES (
+    :Name,
+    :Age,
+    :YearEnrolled,
+    :StudentClass
+);
 """
 
-INSERT_SUBJECT = """
-INSERT INTO Subject VALUES (?, ?, ?)
+INSERT_CLASS = """
+INSERT INTO Class (
+    Name,
+    ClassLevel,
+    GraduatingYear,
+    ClassTutor
+) VALUES (
+    :Name,
+    :ClassLevel,
+    :GraduatingYear,
+    :ClassTutor
+);
 """
 
 INSERT_CLUB = """
-INSERT INTO Club VALUES (?, ?)
+INSERT INTO Club (
+    Name
+) VALUES (
+    :Name
+);
 """
 
 INSERT_ACTIVITY = """
-INSERT INTO Class VALUES (?, ?, ?, ?)
-""" 
+INSERT INTO Activity (
+    Name,
+    StartDate,
+    EndDate,
+    Description
+) VALUES (
+    :Name,
+    :StartDate,
+    :EndDate,
+    :Description
+);
+"""
+
+INSERT_SUBJECT = """
+INSERT INTO Subject (
+    ID
+    Name,
+    SubjectLevel
+) VALUES (
+    :ID
+    :Name,
+    :SubjectLevel
+);
+"""
