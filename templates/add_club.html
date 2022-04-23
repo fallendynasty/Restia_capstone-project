@@ -1,16 +1,16 @@
 <html>
     <head>
-        <title>Add CCA</title>
-        <link href="add_style.css" rel="stylesheet" type="text/css">
+        <title>Add Club</title>
+        <link href="{{url_for('static', filename="add_style.css")}}" rel="stylesheet" type="text/css">
     </head>
 
     <body class="text_change">
         <div class="topbar">
-            <p style="padding-left:3px;"><a href="">Home</a> >CCA</p>
+            <p style="padding-left:3px;"><a href="/">Home</a> >Add Club</p>
         </div><br/>
-        <form class="form_styles">
-            <label for="cca_name">Name of CCA:</label>
-            <input type="text" id="cca_name" name="cca_name" value=""><br/><br/>
+        <form action="/add/club?add" method="post" class="form_styles">
+            <label for="club_name">Name of Club:</label>
+            <input type="text" id="club_name" name="club_name" value=""><br/><br/>
             <label for="student_name">Student Name:</label>
             <input type="text" id="student_name" name="student_name" value=""><br/><br/>
             <label for="student_class">Student Class:</label>

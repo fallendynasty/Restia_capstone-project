@@ -1,0 +1,18 @@
+body{
+    background-color: #B7CADB;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.topbar{
+    background-color: #F3E9DD;
+    padding: 2.5px 10px;
+    overflow: hidden;
+    font-family: Helvetica, sans-serif;
+    font-size:17px;
+}
+
+.form_styles{
+    font-family: Helvetica,sans-serif;
+    font-size: 17px;
+    padding-left: 10px;
+}

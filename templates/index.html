@@ -10,20 +10,21 @@
                 <li><a href="">Home</a></li>
                 <li><a href="">Add</a>
                 <ul>
-                    <li><a href="">Add CCA</a></li>
-                    <li><a href="">Add Activity</a></li>
+                    <li><a href="{{url_for('add', form='club')}}">Add Club</a></li>
+                    <li><a href="{{url_for('add', form='activity')}}">Add Activity</a></li>
                 </ul>
                 </li>
                 <li><a href="">View</a>
                 <ul>
-                    <li><a href="">View Student</a></li>
-                    <li><a href="">View CCA</a></li>
-                    <li><a href="">View Activity</a></li>
+                    <li><a href="{{url_for('view', form='student')}}">View Student</a></li>
+                    <li><a href="{{url_for('view', form='club')}}">View Club</a></li>
+                    <li><a href="{{url_for('view', form='activity')}}">View Activity</a></li>
+                    <li><a href="{{url_for('view', form='class')}}">View Class</li>
                 </ul>
                 <li><a href="">Edit</a>
                 <ul>
-                    <li><a href="">Edit Membership</a></li>
-                    <li><a href="">Edit Participation</a></li>
+                    <li><a href="{{url_for('edit', form='student-club_membership')}}">Edit Membership</a></li>
+                    <li><a href="{{url_for('edit', form='student-activity_participation')}}">Edit Participation</a></li>
                 </ul>   
                 </li>
                 <li><a href="">Profile</a></li>
@@ -35,8 +36,8 @@
         </nav>
 
         <div class="bg-text">
-            <h1>NYJC CCA Manager</h1>
-            <p>Easily manage CCAs and more!</p>
+            <h1>NYJC Club Manager</h1>
+            <p>Easily manage clubs and more!</p>
         </div>
         
     </body>

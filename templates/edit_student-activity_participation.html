@@ -1,1 +1,48 @@
-to be filled activity participation
+<html>
+    <head>
+        <title>Edit Participation</title>
+        <link href="{{url_for('static', filename="edit_style.css")}}" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <div class="topbar">
+            <p style="padding-left:3px;"><a href="/">Home</a> >Edit Participation</p>
+        </div><br/>
+
+        <form class="form_styles">
+            {% for name, value in [("student_name","Howard"),("student_class",2128)] %}
+            <label for="{{ name }}">{{ name|title }}:</label>
+            <input style="font-size:17px;"
+                id="{{ name }}"
+                type="text"
+                name="{{ name }}"
+                value="{{ value }}"
+            />
+            <br/>
+            {% endfor %}
+
+            <input style="background-color: #DAB88B; font-size: 17px;" type="submit" value="Submit">
+
+         </form>
+
+        <!--
+        <table style="padding-left:10px; border-collapse: collapse; width: 100%;">
+            <tr>
+                <th style = "padding:8px; border: 2px solid black;">Student Name</th>
+                <th style = "padding:8px; border: 2px solid black;">Student Class</th>
+                <th style = "padding:8px; border: 2px solid black;">Student Activity(s)</th>
+                <th style = "padding:8px; border: 2px solid black;">Delete?</th>
+            </tr>
+
+            <tr>
+                <td style = "padding:8px; border: 2px solid black;">{{name}}</td>
+                <td style = "padding:8px; border: 2px solid black;">{{class}}</td>
+                <td style = "padding:8px; border: 2px solid black;">{{activity}}</td>
+                <td style = "padding:8px; border: 2px solid black;"><input type="checkbox" name="" value="" </td>
+            </tr>
+        </table>
+        -->
+
+    </body>
+
+</html>

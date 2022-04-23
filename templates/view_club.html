@@ -1,19 +1,37 @@
 <html>
     <head>
         <title>View Club</title>
-        <link href="add_style.css" rel="stylesheet" type="text/css">
+        <link href="{{url_for('static', filename="add_style.css")}}" rel="stylesheet" type="text/css">
     </head>
 
     <body>
         <div class="topbar">
-            <p style="padding-left:3px;"><a href="">Home</a> >View Club</p>
+            <p style="padding-left:3px;"><a href="/">Home</a> >View Club</p>
         </div><br/>
 
          <form class="form_styles">
             <label for="club">Enter Club Name:</label>
             <input type="text" id="club" name="club" value=""><br/><br/>
-             <input type="submit" value="Search">
+             <input style="background-color: #DAB88B; font-size: 17px;" type="submit" value="Search">
          </form>
+
+        <table style="padding-left:10px; border-collapse: collapse; width: 100%;">
+            <tr>
+                <th style="padding:8px; border: 2px solid black;">Student Name</th>
+                <th style="padding:8px; border: 2px solid black;">Student Class</th>
+                <th style="padding:8px; border: 2px solid black;">Student Activity(s)</th>
+            </tr>  
+
+            {% for name in ['Jack','Mindy','Claire']%}
+            <tr>
+                <td style="padding:8px; border:2px solid black;">0</td>
+                <td style="padding:8px; border:2px solid black;">{{name}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+
+
+        
     </body>
     
 </html>
