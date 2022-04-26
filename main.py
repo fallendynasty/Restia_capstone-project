@@ -19,7 +19,8 @@ def view(form):
         return render_template('view_activity.html')
 
     if form == 'class':
-        return render_template('view_class.html')
+        return render_template('view_class.html',
+                              page_type='confirm')
 
     else:
         return render_template('view_student.html')
@@ -42,7 +43,7 @@ def edit(form):
     goes to form for editing, post request so that changes can be sent to database
     '''
     if form == 'student-club_membership':
-        return render_template('edit_student-club_membership.html')
+        return render_template('edit_student-club_membership.html', page_type='confirm')
         
     else:
         return render_template('edit_student-activity_participation.html')

@@ -10,40 +10,28 @@
         </div><br/>
 
         <form class="form_styles">
-            {% for name, value in [("student_name","Howard"),("student_class",2128)] %}
-            <label for="{{ name }}">{{ name|title }}:</label>
+            <label for="student">Student name:</label>
             <input style="font-size:17px;"
-                id="{{ name }}"
                 type="text"
-                name="{{ name }}"
-                value="{{ value }}"
-            />
-            <br/>
-            {% endfor %}
-
-            <input style="background-color: #DAB88B; font-size: 17px;" type="submit" value="Submit">
-            
-         </form>
-
-
-        <!--
-        <table style="padding-left:10px; border-collapse: collapse; width: 100%;">
-            <tr>
-                <th style = "padding:8px; border: 2px solid black;">Student Name</th>
-                <th style = "padding:8px; border: 2px solid black;">Student Class</th>
-                <th style = "padding:8px; border: 2px solid black;">Student Club(s)</th>
-                <th style = "padding:8px; border: 2px solid black;">Delete?</th>
-            </tr>
-
-            <tr>
-                <td style = "padding:8px; border: 2px solid black;">{{name}}</td>
-                <td style = "padding:8px; border: 2px solid black;">{{class}}</td>
-                <td style = "padding:8px; border: 2px solid black;">{{club}}</td>
-                <td style = "padding:8px; border: 2px solid black; text-align: center;"><input type="checkbox" name="" value="" </td>
-            </tr>
-        </table>
-        -->
+                id="student"
+                name="student_name"
+                value=""></br>
+            <input  style="background-color: #DAB88B; font-size: 17px;" type="submit" value="Search">
+        </form>
         
+        <form class="form_styles">
+            <label for="student">Student name:</label>
+            <input style="font-size:17px;"
+                type="text"
+                id="student"
+                name="student_name"
+                value="{{student_name}}">
+             <br/>
+    
+            <input style="background-color: #DAB88B; font-size: 17px;" type="submit" value="Submit">
+            <p>*Note: Enter an empty form to delete</p>
+            
+            </form>
+       
     </body>
-
 </html>
