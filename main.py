@@ -63,7 +63,7 @@ def edit(form):
     #                           form_type=form)
 
     if form == 'student-club_membership':
-        return render_template('edit_student-club_membership.html')
+        return render_template('edit_student-club_membership.html', page_type='confirm')
         
     else:
         return render_template('edit_student-activity_participation.html')
