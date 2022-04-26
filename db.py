@@ -1,156 +1,148 @@
+### INITIATING DATABASE ###
 import sqlite3
 import sql
+import csv
+
+
 
 class Table:
-    def init(self, database, table):
-        self.database = database
-        self.table = table
+    def __init__(self, database, table):
+        self.__database = database
+        self.__table = table
 
-    def execute(self, sql, values = None):
-        with sqlite3.connect(self.database) as conn:
+    def import_csv(self, filename):
+        with open (filename, 'r') as f:
+            for record in csv.DictReader(f):
+                self.insert(record)
+
+    def execute(self, sql, values=""):
+        with sqlite3.connect(self.__database) as conn:
             cur = conn.cursor()
             cur.execute(sql, values)
+            result = []
 
-    def update(self, data_updated, data_checked):
-        with sqlite3.connect(self.database) as conn:
-            query = """UPDATE """ + self.table + """ SET student_name = ? WHERE id = ?"""
-            param = (data_updated, data_checked)
-            cur = conn.cursor()
-            cur.execute(query, param)
+            # RETRIEVING RESULTS
+            # IF TYPE IS EMPTY, RETURN []
+            loop = cur.fetchall()
+            for rec in loop:
+                result.append(rec)
+
             conn.commit()
+            return result
+            # conn.close() automatically
 
+    def get_all(self):
+        sql = f'SELECT * FROM {self.__table};'
+        return self.execute(sql)
 
-    def delete(self, value):
-        with sqlite3.connect(self.database) as conn:
-            query = """DELETE FROM """ + self.table + """ WHERE id = ?;"""
-            param = (value, )
-            cur = conn.cursor()
-            cur.execute(query, param)
-            conn.commit()
+    def find(self, **kwargs):
+        # kwargs is a dictionary of key = column name, value = value pairs
+        kwargs.setdefault('column', '*')
+        sql_condition = " WHERE "
+        sql_values = []
 
+        # CREATING CONDITIONAL STATEMENT
+        if 'dic' in kwargs.keys(): # dict passed in
+            for key, value in kwargs['dic'].items():
+                if key != 'column':
+                    sql_condition += f"{key} = ? AND "
+                    if type(value) == str:
+                        sql_values.append(value.upper()) # values in database are stored in uppercase
+                    else:
+                        sql_values.append(value)
 
-    def find(self, value):
-        with sqlite3.connect(self.database) as conn:
-            query = """SELECT * FROM """ + self.table + """ WHERE id = ?;"""
-            param = (value, )
-            cur = conn.cursor()
-            cur.execute(query, param)
-            record = cur.fetchone()
+        else: # not a dict passed in
+            for key, value in kwargs.items():
+                if key != 'column':
+                    sql_condition += f"{key} = ? AND "
+                    if type(value) == str:
+                        sql_values.append(value.upper()) # values in database are stored in uppercase
+                    else:
+                        sql_values.append(value)
 
-        return record
+        # CREATING EXECUTABLE SQL
+        sql = "SELECT " + kwargs["column"] + f" FROM {self.__table}" + sql_condition
+        sql = sql.strip("AND ") + ";"
+
+        return self.execute(sql, tuple(sql_values))
+
+    def insert(self, sql, document):
+        # GENERALISE DATA
+        for key, value in document.items():
+            if type(value) == str:
+                document[key] = value.upper()
+            elif type(value) == int:
+                document[key] = int(value)
+        # NAME OF DOCUMENT NOT IN DATABASE THEN ADD
+        if self.find(Name=document['Name']) == []:
+            self.execute(sql, document)
+
+    def drop(self):
+        self.execute(f'DROP TABLE IF EXISTS {self.__table}')
 
 class Student(Table):
-    def init(self, database):
-        super().init(database, "Student")
+    def __init__(self, database):
+        super().__init__(database, "Student")
         self.execute(sql.CREATE_STUDENT)
+        self.execute(sql.CREATE_STUDENTCLUB)
+        self.execute(sql.CREATE_STUDENTSUBJECT)
+        self.execute(sql.CREATE_STUDENTACTIVITY)
 
-    def insert(self, doc):
-        if not self.find(doc['id']):
-            self.execute(sql.INSERT_STUDENT, tuple(doc.values()))
+    def insert(self, document):
+        super().insert(sql.INSERT_STUDENT, document)
 
 class Class(Table):
-    def init(self, database):
-        super().init(database, "Class")
+    def __init__(self, database):
+        super().__init__(database, "Class")
         self.execute(sql.CREATE_CLASS)
 
-    def insert(self, doc):
-        if not self.find(doc['id']):
-            self.execute(sql.INSERT_CLASS, doc)
-
+    def insert(self, document):
+        super().insert(sql.INSERT_CLASS, document)
 
 class Club(Table):
-    def init(self, database):
-        super().init(database, "Club")
+    def __init__(self, database):
+        super().__init__(database, "Club")
         self.execute(sql.CREATE_CLUB)
 
     def insert(self, document):
         super().insert(sql.INSERT_CLUB, document)
 
+    def find_students_not_in_club(self, club_id):
+        return self.execute(sql.STUDENT_NOT_IN_CLUB, club_id)
+
+    def find_students_in_club(self, club_id):
+        return self.execute(sql.STUDENTROLE_IN_CLUB, club_id)
+
+    def insert_member(self, club_id, student_id):
+        data = []
+        for id in student_id:
+            data.append({'StudentID': id, 'ClubID': club_id})
+        for record in data:
+            self.execute(sql.INSERT_MEMBER, record)
 
 class Activity(Table):
-    def init(self, database):
-        super().init(database, "Activity")
+    def __init__(self, database):
+        super().__init__(database, "Activity")
         self.execute(sql.CREATE_ACTIVITY)
 
-    def insert(self, doc):
-        if not self.find(doc['id']):
-            super().insert(sql.INSERT_ACTIVITY, doc)
-
+    def insert(self, document):
+        super().insert(sql.INSERT_ACTIVITY, document)
 
 class Subject(Table):
-    def init(self, database):
-        super().init(database, "Subject")
+    def __init__(self, database):
+        super().__init__(database, "Subject")
         self.execute(sql.CREATE_SUBJECT)
 
-    def insert(self, doc):
-        if not self.find(doc['id']):
-            super().insert(sql.INSERT_SUBJECT, doc)
+    def insert(self, document):
+        super().insert(sql.INSERT_SUBJECT, document)
 
-
-
-
-
-
-
-
-
-
-
-CREATE_STUDENT = """
-CREATE TABLE IF NOT EXISTS Student (
-    ID INTEGER PRIMARY KEY,
-    Name TEXT,
-    Age INTEGER,
-    YearEnrolled INTEGER,
-    StudentClass INTEGER,
-    FOREIGN KEY(StudentClass) REFERENCES Class(ID)
-);
-"""
-
-CREATE_CLASS = """
-CREATE TABLE IF NOT EXISTS Class (
-    ID INTEGER PRIMARY KEY,
-    Name TEXT,
-    ClassLevel TEXT CHECK (
-        ClassLevel IN ('JC1', 'JC2')
-        ),
-    GraduatingYear INTEGER,
-    ClassTutor INTEGER,
-    FOREIGN KEY (ClassTutor) REFERENCES Tutor(ID)
-);
-"""
-
-CREATE_SUBJECT = """
-CREATE TABLE IF NOT EXISTS Subject (
-    ID TEXT PRIMARY KEY,
-    Name TEXT CHECK (
-        Name IN (
-            'GP', 'MATH', 'FM', 'COMP', 'PHY', 'CHEM', 'ECONS', 'BIO',
-            'GEO', 'HIST', 'ELIT', 'ART', 'CLTRANS', 'CL', 'ML', 'TL', 'TRAN',
-            'CLL', 'CLB', 'PW', 'PUNJABI', 'HINDI', 'BENGALESE', 'JAPANESE'
-            )
-        ),
-    SubjectLevel TEXT CHECK (
-        SubjectLevel IN ('H1','H2','H3')
-        )
-);
-"""
-
-CREATE_CLUB = """
-CREATE TABLE IF NOT EXISTS Club (
-    ID INTEGER PRIMARY KEY,
-    Name TEXT
-);
-"""
-
-# start date has a certain format
-# end date is optional
-CREATE_ACTIVITY = """
-CREATE TABLE IF NOT EXISTS Activity (
-    ID INTEGER PRIMARY KEY,
-    Name TEXT
-    StartDate TEXT
-    EndDate TEXT
-    Description TEXT
-);
-""" 
+coll = {
+    'student': Student("database.db"),
+    'class': Class("database.db"),
+    'subject': Subject("database.db"),
+    'activity': Activity("database.db"),
+    'club': Club("database.db"),
+}
+coll['student'].import_csv('student.csv')
+coll['class'].import_csv('class.csv')
+coll['subject'].import_csv('subject.csv')
