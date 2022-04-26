@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import db as DB
+import db
 app = Flask(__name__)
 
 @app.route('/') #Splash page (Welcome page)
@@ -12,10 +12,10 @@ def view(form):
     '''
     views the form of specified type
     '''
-    view_records = []
+    view_records = db.coll[f'{form}'].get_all()
     if "view" in request.args:
         view_parameters = dict(request.form)
-        view_records.append(DB.get_data(view_parameters, form))
+        view_records = db.coll[f'{form}'].find(view_parameters)
 
     if form == 'club':
         return render_template('view_club.html', view_records=view_records)
@@ -35,8 +35,9 @@ def add(form):
     goes to form for adding, post to send data in the form
     '''
     if "add" in request.args:
-        add_parameters = dict(request.form)
-        DB.add(add_parameters, form)
+        add_parameters = dict(request.form) 
+        print(request.form.values, add_parameters)
+        db.coll[f'{form}'].insert(add_parameters)
         return render_template('add_success.html', 
                                record=add_parameters,
                                form_type=form)
