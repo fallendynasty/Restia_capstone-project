@@ -1,2 +1,29 @@
-{{record}}
-{{form_type}}
+<html>
+    <head>
+        <title>Succesfully added!</title>
+        <link href="{{url_for('static', filename="add_style.css")}}" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <div class="topbar">
+            <p style="padding-left:3px; text-align: center; font-size: 17px;"><b>CCA Manager</b></p>
+        </div>
+
+        <div class="container">
+            <img src="https://cdn.statically.io/img/media.kitsu.io/f=webp,h=350/manga/54448/cover_image/1c96f626f68456220ba41096a1942eee.png" style="width:100%;">
+            <br/>
+            <br/>
+    
+            <div class="boxed">
+                <p style="padding:8px;font-size:17px; text-align: center;">Succesfully added CCA:</p>
+                <p style="padding:8px;font-size:17px; text-align: center;">{{record['Name']}}</p>
+            </div><br/>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="/">Return to Home</a><br/>
+            <a href="">Edit CCA Membership</a>
+        </div>
+    </body>
+    
+</html>

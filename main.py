@@ -42,6 +42,7 @@ def add(form):
                                record=add_parameters,
                                form_type=form)
         
+        
     if form == 'club':
         return render_template('add_club.html')
 
