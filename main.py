@@ -16,7 +16,7 @@ def view(form):
     if "view" in request.args:
         view_parameters = dict(request.form)
         view_records = db.coll[f'{form}'].find(view_parameters)
-
+    
     if form == 'club':
         return render_template('view_club.html', view_records=view_records)
         

@@ -17,16 +17,19 @@
 
         <table style="padding-left:10px; border-collapse: collapse; width: 100%;">
             <tr>
-                <th style="padding:8px; border: 2px solid black;">Student Name</th>
-                <th style="padding:8px; border: 2px solid black;">Student Club</th>
-                <th style="padding:8px; border: 2px solid black;">Student Activity(s)</th>
+                <th style="width:10%; padding:8px; border: 2px solid black;">Class ID</th>
+                <th style="padding:8px; border: 2px solid black;">Class</th>
+                <th style="padding:8px; border: 2px solid black;">Level</th>
             </tr>  
 
-            {% for name in ['Jack','Mindy','Claire']%}
+            {% for student in view_records:%}
             <tr>
-                <td style="padding:8px; border:2px solid black;">0</td>
-                <td style="padding:8px; border:2px solid black;">{{name}}</td>
-            </tr>
+                <td style="width:10%; padding:8px; border:2px solid black;">{{student[0]}}</td>
+                <td style="padding:8px; border:2px solid black;">{{student[1]}}</td>
+                <td style="padding:8px; border:2px solid black;">{{student[2]}}</td>
+                
+            </tr>    
+                
             {%endfor%}
         </table>
 

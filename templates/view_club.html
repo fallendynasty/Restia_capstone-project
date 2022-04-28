@@ -11,8 +11,8 @@
 
          <form class="form_styles">
             <label for="club">Enter Club Name:</label>
-            <input type="text" id="club" name="club" value=""><br/><br/>
-             <input style="background-color: #DAB88B; font-size: 17px;" type="submit" value="Search">
+            <input type="text" id="club" name="club" value="">
+             <input style="background-color: #DAB88B; font-size:15px;" type="submit" value="Search">
          </form>
 
         <table style="padding-left:10px; border-collapse: collapse; width: 100%;">
@@ -28,7 +28,11 @@
                 <td style="padding:8px; border:2px solid black;">{{name}}</td>
             </tr>
             {%endfor%}
-        </table>
+        </table><br/>
+        
+        <form action="" method="post">
+            <input type="submit" value="Add Student">
+        </form>
 
 
         
