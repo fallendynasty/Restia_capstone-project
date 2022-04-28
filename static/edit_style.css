@@ -16,3 +16,8 @@ body{
     font-size: 17px;
     padding-left: 10px;
 }
+
+.tablestyle{
+    padding:8px; 
+    border:2px solid black;
+}

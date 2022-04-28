@@ -9,6 +9,31 @@
             <p style="padding-left:3px;"><a href="/">Home</a> >Edit Membership</p>
         </div><br/>
 
+        {% if page_type == "new": %}
+            <form class="form_styles">
+                <label for = "name">Enter Club Name:</label>
+                <input style="font-size:17px;"
+                    type="text" 
+                    id="name" 
+                    name="club_name">
+                <br/>
+                <input style="background-color: #DAB88B; font-size: 17px;" type="submit" value="Submit">
+        {% endif %}
+
+        {% if page_type == "confirm:" %}
+            <table style="padding-left:10px; border-collapse: collapse; width: 100%;">
+                <tr>
+                    <th class="tablestyle">Student name</th>
+                </tr>
+                <tr>
+                    <td class="tablestyle">{{student_name}}</td>
+                </tr>
+                
+            </table>
+        {% endif %}
+
+        
+        <!--
         <form class="form_styles">
             <label for="opts">Choose what to edit:</label>
             <select  style="font-size:17px;" id="opts" name="edit_option">
@@ -38,6 +63,6 @@
             <p>*Note: Return to "View" to see data</p>
             
             </form>
-       
+            -->
     </body>
 </html>

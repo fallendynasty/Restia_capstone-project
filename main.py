@@ -66,7 +66,9 @@ def edit(form):
         return render_template('edit_student-club_membership.html')
         
     else:
-        return render_template('edit_student-activity_participation.html')
+        return render_template(
+            'edit_student-activity_participation.html'
+        )
         
 app.run('0.0.0.0')
 #profile page to be implemented
