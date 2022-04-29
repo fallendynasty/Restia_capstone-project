@@ -12,10 +12,11 @@ def view(form):
     '''
     views the form of specified type
     '''
+    page_type = 'new'
     view_records = db.coll[f'{form}'].get_all()
     if "view" in request.args:
         view_parameters = dict(request.form)
-        view_records = db.coll[f'{form}'].find(view_parameters)
+        view_records = db.coll[f'{form}'].find(Name=view_parameters['Name'])
     
     if form == 'club':
         return render_template('view_club.html', view_records=view_records)
@@ -27,7 +28,7 @@ def view(form):
         return render_template('view_class.html', view_records=view_records)
 
     else:
-        return render_template('view_student.html', view_records=view_records)
+        return render_template('view_student.html', view_records=view_records, page_type=page_type)
         
 @app.route('/add/<form>',  methods=['GET', 'POST'])
 def add(form):
