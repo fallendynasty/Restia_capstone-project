@@ -12,10 +12,10 @@ def view(form):
     '''
     views the form of specified type
     '''
-    view_records = db.coll[f'{form}'].get_all()
+    view_records = db.coll[form].get_all()
     if "view" in request.args:
         view_parameters = dict(request.form)
-        view_records = db.coll[f'{form}'].find(view_parameters)
+        view_records = db.coll[form].find(Name=view_parameters['Name'])
     
     if form == 'club':
         return render_template('view_club.html', view_records=view_records)
@@ -26,7 +26,7 @@ def view(form):
     if form == 'class':
         return render_template('view_class.html', view_records=view_records)
 
-    else:
+    else: #view students
         return render_template('view_student.html', view_records=view_records)
         
 @app.route('/add/<form>',  methods=['GET', 'POST'])
@@ -37,6 +37,7 @@ def add(form):
     if "add" in request.args:
         add_parameters = dict(request.form) 
         print(request.form.values, add_parameters)
+<<<<<<< HEAD
         db.coll[f'{form}'].insert(add_parameters)
 
         if form == 'club':
@@ -50,37 +51,43 @@ def add(form):
                                    record=add_parameters,
                                    form_type=form,
                                    page_type="Activity")
+=======
+        db.coll[form].insert(add_parameters)
+        return render_template('add_success.html', 
+                               record=add_parameters,
+                               form_type=form)
+>>>>>>> main
         
         
     if form == 'club':
         return render_template('add_club.html')
 
-    else:
+    else: #add activity
         return render_template('add_activity.html')
-
-        
-@app.route('/edit/<form>',  methods=['GET', 'POST'])
-def edit(form):
-    '''
-    goes to form for editing, post request so that changes can be sent to database
-    '''
-    # edit to be implemented
-    # if "edit" in request.args:
-    #     edit_parameters = dict(request.form)
-    #     DB.edit(edit_parameters, form)
-    #     return render_template('edit_success.html',
-    #                           record=edit_parameters,
-    #                           form_type=form)
-
-    if form == 'student-club_membership':
-        return render_template('edit_student-club_membership.html')
-        
-    else:
-        return render_template(
-            'edit_student-activity_participation.html'
-        )
         
 app.run('0.0.0.0')
+        
+# @app.route('/edit/<form>',  methods=['GET', 'POST'])
+# def edit(form):
+#     '''
+#     goes to form for editing, post request so that changes can be sent to database
+#     '''
+#     # edit to be implemented
+#     # if "edit" in request.args:
+#     #     edit_parameters = dict(request.form)
+#     #     DB.edit(edit_parameters, form)
+#     #     return render_template('edit_success.html',
+#     #                           record=edit_parameters,
+#     #                           form_type=form)
+
+#     if form == 'student-club_membership':
+#         return render_template('edit_student-club_membership.html')
+        
+#     else:
+#         return render_template(
+#             'edit_student-activity_participation.html'
+#         )
+
 #profile page to be implemented
 # @app.route('/<int:student_id>/profile')  
 # def view_profile(student_id):
