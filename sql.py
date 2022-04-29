@@ -88,8 +88,6 @@ CREATE TABLE IF NOT EXISTS StudentActivity (
 );
 """
 
-
-
 ### SQL INSERT STATEMENTS ###
 # Insert for Student, Class, Club, Subject, Activity
 INSERT_STUDENT = """
@@ -162,6 +160,7 @@ INSERT INTO StudentClub (
 )
 """
 
+#others
 STUDENT_NOT_IN_CLUB = """
 SELECT Student.ID, Student.Name, Club.Name
 FROM Student
@@ -188,4 +187,12 @@ ON Student.ID = StudentClub.StudentID
 JOIN Club
 ON Club.ID = StudentClub.ClubID
 WHERE ClubID = ?;
+"""
+
+
+#joins
+INNERJOIN_STUDENT_CLUB = """
+SELECT Student.Name, Class.Name 
+FROM Student INNER JOIN Class 
+ON StudentClass = Class.ID
 """

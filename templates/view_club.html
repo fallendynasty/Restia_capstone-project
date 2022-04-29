@@ -9,52 +9,31 @@
             <p style="padding-left:3px;"><a href="/">Home</a> >View Club</p>
         </div><br/>
 
-         <form class="form_styles">
-            <label for="club">Enter Club Name:</label>
+         <form class="form_styles" action="/view/club?view" method="post">
+            <label for="club">Enter Club Name To View For:</label>
             <input type="text" id="club" name="Name" value="">
              <input style="background-color: #DAB88B; font-size:15px;" type="submit" value="Search">
          </form>
 
-        <form action="" method="">
         <table style="padding-left:10px; border-collapse: collapse; width: 100%;">
             <tr>
-                <th style="padding:8px; border: 2px solid black;">Student Name</th>
-                <th style="padding:8px; border: 2px solid black;">Student Class</th>
-                <th style="padding:8px; border: 2px solid black;">Student Activity(s)</th>
-                <th style="padding:8px; border: 2px solid black;">Delete?</th>
+                <th style="padding:8px; border: 2px solid black;">Club Name</th>
+                <th style="padding:8px; border: 2px solid black;">Activity(s)</th>
             </tr>  
 
-            {% for number in range(0,view_records|length) %}
+            {% for record in view_records %}
             <tr>
-                <td style="padding:8px; border:2px solid black;">{{view_records[number][1]}}</td>
-                <td style="padding:8px; border:2px solid black;">{{number}}</td>
+                <td style="padding:8px; border:2px solid black;">{{record[1]}}</td>
                 <td style="padding:8px; border:2px solid black;"></td>
-                
-                    <td style="padding:8px; border:2px solid black;">
-                        <input type="checkbox" name="checkbox{{number}}" value={{number}}>
-                    </td>
-                
             </tr>
             {%endfor%}
+        </table><br/> 
 
-                
-        </table><br/>
-        <input type="submit" value="Delete selected students"><br/>
-        <input type="submit" value="Add Student">
+        <form class="form_styles" action="/edit/membership" method="post">
+        <label for="add">Enter Club Name To Add Student:</label>
+        <input type="text" id="add" name="Name" value=""><br/>
+        <input style="background-color: #DAB88B; font-size:15px;" type="submit" value="Add Student">
         </form>
-
-        {%if page_type == "confirm"%}
-        <form action="" method="">
-            <label for="name">Enter student name:</label>
-            <input type="text" id="name" name="Name">
-            <label for="class">Enter student class:</label>
-            <input type="text" id="class" name="Class">
-            <label for="activity">Enter activities:</label>
-            <input type="text" id="activity" name="Activity">
-            <input type="submit" value="Submit">
-        </form>
-        {%endif%}
         
     </body>
-    
 </html>

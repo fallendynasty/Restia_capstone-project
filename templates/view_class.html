@@ -9,27 +9,23 @@
             <p style="padding-left:3px;"><a href="/">Home</a> >View Class</p>
         </div><br/>
 
-         <form class="form_styles">
+         <form action="/view/class?view" method="post" class="form_styles">
             <label for="club">Enter Class Name:</label>
             <input type="text" id="class" name="Name" value=""><br/><br/>
              <input style="background-color: #DAB88B; font-size: 17px;" type="submit" value="Search">
          </form>
-
+        
         <table style="padding-left:10px; border-collapse: collapse; width: 100%;">
             <tr>
-                <th style="width:10%; padding:8px; border: 2px solid black;">Class ID</th>
                 <th style="padding:8px; border: 2px solid black;">Class</th>
                 <th style="padding:8px; border: 2px solid black;">Level</th>
             </tr>  
 
             {% for student in view_records:%}
             <tr>
-                <td style="width:10%; padding:8px; border:2px solid black;">{{student[0]}}</td>
                 <td style="padding:8px; border:2px solid black;">{{student[1]}}</td>
                 <td style="padding:8px; border:2px solid black;">{{student[2]}}</td>
-                
             </tr>    
-                
             {%endfor%}
         </table>
 
