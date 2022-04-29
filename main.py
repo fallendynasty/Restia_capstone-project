@@ -12,7 +12,6 @@ def view(form):
     '''
     views the form of specified type
     '''
-    page_type = 'new'
     view_records = db.coll[f'{form}'].get_all()
     if "view" in request.args:
         view_parameters = dict(request.form)
@@ -28,7 +27,7 @@ def view(form):
         return render_template('view_class.html', view_records=view_records)
 
     else:
-        return render_template('view_student.html', view_records=view_records, page_type=page_type)
+        return render_template('view_student.html', view_records=view_records)
         
 @app.route('/add/<form>',  methods=['GET', 'POST'])
 def add(form):
