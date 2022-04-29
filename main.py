@@ -48,38 +48,33 @@ def add(form):
 
     else: #add activity
         return render_template('add_activity.html')
+         
+@app.route('/edit/<form>',  methods=['GET', 'POST'])
+def edit(form):
+    '''
+    goes to form for editing, post request so that changes can be sent to database
+    '''
+    
+    if form == 'membership':
+        clubs = db.coll['club'].get_all()
+        club_searched = dict(request.form)['Name'].upper()
+        club_id = None
+        for x in clubs:
+            if x[1] == club_searched:
+                club_id = (x[0],)
+        if club_id is None:
+            view_records = 'Club does not exist'
+        else:    
+            view_records = db.coll['club'].find_students_in_club(club_id)
+        return render_template('edit_student-club_membership.html', view_records=view_records)
         
+    else:
+        return render_template(
+            'edit_student-activity_participation.html'
+        )
+
+@app.route('/construction',  methods=['GET', 'POST'])
+def construction():
+    return render_template('construction.html')
+    
 app.run('0.0.0.0')
-        
-# @app.route('/edit/<form>',  methods=['GET', 'POST'])
-# def edit(form):
-#     '''
-#     goes to form for editing, post request so that changes can be sent to database
-#     '''
-#     # edit to be implemented
-#     # if "edit" in request.args:
-#     #     edit_parameters = dict(request.form)
-#     #     DB.edit(edit_parameters, form)
-#     #     return render_template('edit_success.html',
-#     #                           record=edit_parameters,
-#     #                           form_type=form)
-
-#     if form == 'student-club_membership':
-#         return render_template('edit_student-club_membership.html')
-        
-#     else:
-#         return render_template(
-#             'edit_student-activity_participation.html'
-#         )
-
-#profile page to be implemented
-# @app.route('/<int:student_id>/profile')  
-# def view_profile(student_id):
-#     breakpoint()
-#     records = dict(request.form) #contain stuff needed
-#     if 'admin' in request.args: #admin page
-#         return render_template('admin_profile.html')
-#     return render_template('student_profile.html') 
-
-
-
