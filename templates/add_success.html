@@ -9,21 +9,45 @@
             <p style="padding-left:3px; text-align: center; font-size: 17px;"><b>CCA Manager</b></p>
         </div>
 
+        {% if page_type == "CCA" %}
         <div class="container">
             <img src="https://cdn.statically.io/img/media.kitsu.io/f=webp,h=350/manga/54448/cover_image/1c96f626f68456220ba41096a1942eee.png" style="width:100%;">
             <br/>
             <br/>
-    
+            
             <div class="boxed">
                 <p style="padding:8px;font-size:17px; text-align: center;">Succesfully added CCA:</p>
                 <p style="padding:8px;font-size:17px; text-align: center;">{{record['Name']}}</p>
-            </div><br/>
+            </div><br/> 
         </div>
 
         <div style="text-align: center;">
             <a href="/">Return to Home</a><br/>
-            <a href="">Edit CCA Membership</a>
+            <a href=""{{url_for('view', form='club')}}"">Edit CCA Membership</a>
         </div>
+
+        {% elif page_type == "Activity" %}
+        <div class="container">
+            <img src="https://cdn.statically.io/img/media.kitsu.io/f=webp,h=350/manga/54448/cover_image/1c96f626f68456220ba41096a1942eee.png" style="width:100%;">
+            <br>
+            <br>
+
+        <div class="boxed">
+                <p style="padding:8px;font-size:17px; text-align: center;">Succesfully added Activity:</p>
+                <p style="padding:8px;font-size:17px; text-align: center;">{{record['Name']}}</p>
+                <p style="padding:8px;font-size:17px; text-align: center;">{{record['StartDate']}}</p>
+                <p style="padding:8px;font-size:17px; text-align: center;">{{record['EndDate']}}</p>
+                <p style="padding:8px;font-size:17px; text-align: center;">{{record['Description']}}</p>
+            
+            </div><br> 
+        </div>
+
+        <div style="text-align: center;">
+            <a href="/">Return to Home</a><br/>
+            <a href="{{url_for('view', form='activity')}}">Edit Activity Participation</a>
+        </div>
+
+        {% endif %}
     </body>
     
 </html>

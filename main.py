@@ -38,9 +38,18 @@ def add(form):
         add_parameters = dict(request.form) 
         print(request.form.values, add_parameters)
         db.coll[f'{form}'].insert(add_parameters)
-        return render_template('add_success.html', 
-                               record=add_parameters,
-                               form_type=form)
+
+        if form == 'club':
+            return render_template('add_success.html', 
+                                   record=add_parameters,
+                                   form_type=form,
+                                   page_type="CCA")
+
+        else:
+            return render_template('add_success.html', 
+                                   record=add_parameters,
+                                   form_type=form,
+                                   page_type="Activity")
         
         
     if form == 'club':
