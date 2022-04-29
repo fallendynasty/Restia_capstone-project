@@ -16,7 +16,6 @@
              <input style="background-color: #DAB88B; font-size: 17px;" type="submit" value="Submit">
          </form>
 
-        {%if page_type=="new":%}
         <p style="padding-left: 10px; font-size:20px;">Students:</p>
 
         <table style="padding-left:10px; border-collapse: collapse; width: 100%;">
@@ -40,33 +39,7 @@
             </tr>
             {%endfor%}
         </table>
-        {%endif%}
 
-        {%if page_type == "confirm":%}
-            <p style="padding-left: 10px; font-size:20px;">Results:</p>
-
-            <table style="padding-left:10px; border-collapse: collapse; width: 100%;">
-            <tr>
-                <th style="padding:8px; border: 2px solid black;">Student Name</th>
-                <th style="padding:8px; border: 2px solid black;">Student Class</th>
-                <th style="padding:8px; border: 2px solid black;">Year enrolled</th>
-                <th style="padding:8px; border: 2px solid black;">Student Club(s)</th>
-                <th style="padding:8px; border: 2px solid black;">Student Activity(s)</th>
-            </tr>  
-
-            {%for student in view_records:%}
-            <tr>
-                <td style="padding:8px; border:2px solid black;">{{student[1]}}</td>
-                {%if student[5]==1:%}
-                <td style="padding:8px; border:2px solid black;">2113</td>
-                {%else:%}
-                <td style="padding:8px; border:2px solid black;">2128</td>
-                {%endif%}
-                <td style="padding:8px; border:2px solid black;">{{student[3]}}</td>
-                
-            </tr>
-            {%endfor%}
-        {%endif%}
         
 
         
