@@ -98,7 +98,10 @@ class Class(Table):
 
     def insert(self, document):
         super().insert(sql.INSERT_CLASS, document)
-
+        
+    def innerjoin(self, doc):
+        return self.execute(sql.INNERJOIN_STUDENT_CLUB )
+        
 class Club(Table):
     def __init__(self, database):
         super().__init__(database, "Club")
@@ -146,3 +149,9 @@ coll = {
 coll['student'].import_csv('student.csv')
 coll['class'].import_csv('class.csv')
 coll['subject'].import_csv('subject.csv')
+
+
+
+
+
+

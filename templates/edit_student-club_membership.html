@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>edit membership</title>
+        <link href="{{url_for('static', filename="add_style.css")}}" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+    {% if view_records is string %}
+        <div class="topbar">
+            <p style="padding-left:3px;"><a href="/">Home</a> >edit_membership</p>
+        </div><br/>
+        {{view_records}}
+    {% else %}
+        <div class="topbar">
+            <p style="padding-left:3px;"><a href="/">Home</a> >edit_membership</p>
+        </div><br/>
+
+    <form class="form_styles" action="/construction" method="get">
+        <label for="add">Enter Student Name To Add:</label>
+        <input type="text" id="add" name="Name" value=""><br/>
+        <input style="background-color: #DAB88B; font-size:15px;" type="submit" value="Add Student">
+    </form>
+    <table style="padding-left:10px; border-collapse: collapse; width: 100%;">
+            <tr>
+                <th style="padding:8px; border: 2px solid black;">Student Name</th>
+                <th style="padding:8px; border: 2px solid black;">Student Role</th>
+            </tr>  
+
+            {% for record in view_records %}
+            <tr>
+                <td style="padding:8px; border:2px solid black;">{{record[0]}}</td>
+                <td style="padding:8px; border:2px solid black;">{{record[1]}}</td>
+            </tr>
+            {%endfor%}
+    </table><br/> 
+    {% endif %}
+    </body>
+    
+</html>
