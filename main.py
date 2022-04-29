@@ -16,7 +16,7 @@ def view(form):
     if "view" in request.args:
         view_parameters = dict(request.form)
         view_records = db.coll[f'{form}'].find(view_parameters)
-
+    
     if form == 'club':
         return render_template('view_club.html', view_records=view_records)
         
@@ -42,6 +42,7 @@ def add(form):
                                record=add_parameters,
                                form_type=form)
         
+        
     if form == 'club':
         return render_template('add_club.html')
 
@@ -63,10 +64,12 @@ def edit(form):
     #                           form_type=form)
 
     if form == 'student-club_membership':
-        return render_template('edit_student-club_membership.html', page_type='confirm')
+        return render_template('edit_student-club_membership.html')
         
     else:
-        return render_template('edit_student-activity_participation.html')
+        return render_template(
+            'edit_student-activity_participation.html'
+        )
         
 app.run('0.0.0.0')
 #profile page to be implemented

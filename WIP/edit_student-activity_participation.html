@@ -10,6 +10,35 @@
         </div><br/>
 
         <form class="form_styles">
+            <label for="opts">Choose what to edit:</label>
+            <select  style="font-size:17px;" id="opts" name="edit_option">
+                <option value="name">Name</option>
+                <option value="club">Activity</option>
+            </select>
+            <br/><br/>
+            
+            <label for="old_data">Old data:</label>
+            <input style="font-size:17px;"
+                type="text"
+                id="old_data"
+                name="old_data"
+            >
+             <br/><br/>
+
+            <label for="new_data">New data:</label>
+            <input style="font-size:17px;"
+                type="text"
+                id="new_data"
+                name="new_data"
+            >
+             <br/>
+    
+            <input style="background-color: #DAB88B; font-size: 17px;" type="submit" value="Submit">
+            <p>*Note: Return to "View" to see data</p>
+            
+            </form>
+        <!--
+        <form class="form_styles">
             {% for name, value in [("student_name","Howard"),("student_class",2128)] %}
             <label for="{{ name }}">{{ name|title }}:</label>
             <input style="font-size:17px;"
@@ -24,7 +53,8 @@
             <input style="background-color: #DAB88B; font-size: 17px;" type="submit" value="Submit">
 
          </form>
-
+        -->
+        
         <!--
         <table style="padding-left:10px; border-collapse: collapse; width: 100%;">
             <tr>
